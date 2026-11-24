@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 import os
 import sys
@@ -12,16 +13,16 @@ def get_base_dir():
     return os.path.dirname(os.path.abspath(__file__))
 
 
-def get_settings_path():
+def get_app_data_dir():
     appdata = os.environ.get("APPDATA") or os.path.expanduser("~")
     cfg_dir = os.path.join(appdata, "АвтоРучка")
     os.makedirs(cfg_dir, exist_ok=True)
-    return os.path.join(cfg_dir, "settings.json")
+    return cfg_dir
 
 
 class DesktopApi:
     def load_settings(self):
-        path = get_settings_path()
+        path = os.path.join(get_app_data_dir(), "settings.json")
         if not os.path.exists(path):
             return None
         try:
@@ -31,7 +32,7 @@ class DesktopApi:
             return None
 
     def save_settings(self, payload):
-        path = get_settings_path()
+        path = os.path.join(get_app_data_dir(), "settings.json")
         try:
             with open(path, "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=2)
@@ -39,31 +40,50 @@ class DesktopApi:
         except Exception:
             return False
 
-
-def watch_html(window, html_path):
-    last_mtime = os.path.getmtime(html_path)
-    while True:
-        time.sleep(1.5)
+    def load_photos(self):
+        path = os.path.join(get_app_data_dir(), "photos.json")
+        if not os.path.exists(path):
+            return []
         try:
-            mtime = os.path.getmtime(html_path)
-            if mtime != last_mtime:
-                last_mtime = mtime
-                window.evaluate_js("checkForCodeUpdates()")
-        except OSError:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+
+    def save_photos(self, photos_list):
+        path = os.path.join(get_app_data_dir(), "photos.json")
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(photos_list, f, ensure_ascii=False)
+            return True
+        except Exception:
+            return False
+
+
+ONE_DAY_SEC = 24 * 60 * 60
+
+
+def watch_updates(window):
+    while True:
+        time.sleep(ONE_DAY_SEC)
+        try:
+            window.evaluate_js("if (typeof checkForCodeUpdates === 'function') checkForCodeUpdates(false)")
+        except Exception:
             pass
 
 
 if __name__ == "__main__":
-    html_path = os.path.join(get_base_dir(), "index.html")
+    html_path = Path(get_base_dir()) / "index.html"
     api = DesktopApi()
     window = webview.create_window(
         "АвтоРучка",
-        url=f"file:///{html_path.replace(os.sep, '/')}",
+        url=html_path.as_uri(),
         width=1280,
         height=820,
         min_size=(900, 600),
         js_api=api,
+        background_color="#0c0e1a",
     )
-    t = threading.Thread(target=watch_html, args=(window, html_path), daemon=True)
+    t = threading.Thread(target=watch_updates, args=(window,), daemon=True)
     t.start()
-    webview.start()
+    webview.start(debug=False)

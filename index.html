@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<title>Рукописный конспект</title>
+<title>АвтоРучка</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,11 +67,7 @@
     transition: background-color .2s, color .2s;
   }
 
-  .shell {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
+  .shell { display: flex; flex-direction: column; height: 100vh; }
 
   .topbar {
     height: 54px;
@@ -85,305 +81,130 @@
     gap: 12px;
   }
 
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 15px;
-  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
   .brand-logo {
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
+    width: 30px; height: 30px; border-radius: 9px;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    display: grid;
-    place-items: center;
-    font-size: 15px;
+    display: grid; place-items: center; font-size: 15px;
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
   }
   .ver-badge {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 999px;
-    background: var(--bg-pill);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
+    font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px;
+    background: var(--bg-pill); color: var(--text-muted); border: 1px solid var(--border);
   }
 
-  .top-tabs {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 100%;
-  }
+  .top-tabs { display: flex; align-items: center; gap: 4px; height: 100%; }
   .top-tab {
-    position: relative;
-    height: 100%;
-    padding: 0 15px;
-    background: transparent;
-    color: var(--text-muted);
-    border: 0;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    transition: color .15s;
+    position: relative; height: 100%; padding: 0 15px; background: transparent;
+    color: var(--text-muted); border: 0; font-size: 13px; font-weight: 600;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: color .15s;
   }
   .top-tab:hover { color: var(--text); }
   .top-tab.active { color: var(--text); }
   .top-tab.active::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 2.5px;
-    background: var(--accent);
-    border-radius: 2px 2px 0 0;
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2.5px; background: var(--accent); border-radius: 2px 2px 0 0;
   }
   .tab-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--amber);
-    box-shadow: 0 0 8px var(--amber);
-    display: none;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+    box-shadow: 0 0 8px var(--amber); display: none;
   }
   .tab-dot.show { display: inline-block; }
 
-  .top-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
+  .top-actions { display: flex; align-items: center; gap: 8px; }
   .icon-btn {
-    background: var(--bg-card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 6px 11px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    background: var(--bg-card); color: var(--text); border: 1px solid var(--border);
+    border-radius: 9px; padding: 6px 11px; font-size: 12px; font-weight: 600;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
   }
   .icon-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); }
 
-  /* Баннер автообновления при изменении кода */
   .update-banner {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    background: var(--amber-soft);
-    border-bottom: 1px solid var(--amber-border);
-    padding: 9px 18px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--text);
+    display: none; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    background: var(--amber-soft); border-bottom: 1px solid var(--amber-border);
+    padding: 9px 18px; font-size: 12.5px; font-weight: 600; color: var(--text);
   }
   .update-banner.show { display: flex; }
 
-  .workspace {
-    display: grid;
-    grid-template-columns: 248px 1fr;
-    flex: 1;
-    min-height: 0;
-  }
+  .workspace { display: grid; grid-template-columns: 248px 1fr; flex: 1; min-height: 0; }
 
   .sidebar {
-    background: var(--bg-panel);
-    border-right: 1px solid var(--border);
-    padding: 14px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 12px;
-    overflow-y: auto;
+    background: var(--bg-panel); border-right: 1px solid var(--border);
+    padding: 14px 12px; display: flex; flex-direction: column; justify-content: space-between;
+    gap: 12px; overflow-y: auto;
   }
-
   .sidebar-label {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding: 4px 10px 8px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted); padding: 4px 10px 8px;
   }
-
-  .nav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
+  .nav-list { display: flex; flex-direction: column; gap: 4px; }
   .nav-item {
-    width: 100%;
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid transparent;
-    border-radius: 10px;
-    padding: 9px 11px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    text-align: left;
-    transition: all .15s;
+    width: 100%; background: transparent; color: var(--text-muted);
+    border: 1px solid transparent; border-radius: 10px; padding: 9px 11px;
+    font-size: 13px; font-weight: 600; cursor: pointer; display: flex;
+    align-items: center; justify-content: space-between; gap: 8px; text-align: left; transition: all .15s;
   }
   .nav-item:hover { background: var(--bg-card); color: var(--text); }
   .nav-item.active {
-    background: var(--accent-soft);
-    color: var(--text);
-    border-color: rgba(99, 102, 241, 0.35);
+    background: var(--accent-soft); color: var(--text); border-color: rgba(99, 102, 241, 0.35);
   }
   .nav-left { display: flex; align-items: center; gap: 9px; }
   .nav-count {
-    font-size: 11px;
-    font-weight: 700;
-    background: var(--bg-pill);
-    color: var(--text-muted);
-    padding: 1px 7px;
-    border-radius: 999px;
+    font-size: 11px; font-weight: 700; background: var(--bg-pill);
+    color: var(--text-muted); padding: 1px 7px; border-radius: 999px;
   }
   .nav-item.active .nav-count { background: var(--accent); color: #fff; }
 
-  .sidebar-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
+  .sidebar-footer { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; border-top: 1px solid var(--border); }
 
   .save-cta {
-    width: 100%;
-    border-radius: 11px;
-    padding: 12px 14px;
-    font-size: 13.5px;
-    font-weight: 800;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #22c55e, #15803d);
-    color: #ffffff;
+    width: 100%; border-radius: 11px; padding: 12px 14px; font-size: 13.5px; font-weight: 800;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(135deg, #22c55e, #15803d); color: #ffffff;
     border: 1px solid rgba(134, 239, 172, 0.55);
     box-shadow: 0 6px 20px rgba(34, 197, 94, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.28);
     transition: transform .12s ease, box-shadow .15s ease, filter .15s ease;
   }
-  .save-cta:hover {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  }
+  .save-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
   .save-cta:active { transform: translateY(1px); }
-  .save-cta.dirty-pulse {
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35), 0 8px 24px rgba(34, 197, 94, 0.5);
-  }
+  .save-cta.dirty-pulse { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35), 0 8px 24px rgba(34, 197, 94, 0.5); }
 
   .action-tile.reset {
-    width: 100%;
-    border-radius: 10px;
-    padding: 9px 12px;
-    font-size: 12.5px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--bg-card);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    transition: all .15s;
+    width: 100%; border-radius: 10px; padding: 9px 12px; font-size: 12.5px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border); transition: all .15s;
   }
-  .action-tile.reset:hover {
-    background: var(--red-soft);
-    color: var(--red);
-    border-color: rgba(239, 68, 68, 0.35);
-  }
+  .action-tile.reset:hover { background: var(--red-soft); color: var(--red); border-color: rgba(239, 68, 68, 0.35); }
 
-  .main-pane {
-    overflow-y: auto;
-    padding: 20px 24px 44px;
-  }
-  .main-pane::-webkit-scrollbar, .sidebar::-webkit-scrollbar { width: 8px; }
-  .main-pane::-webkit-scrollbar-thumb, .sidebar::-webkit-scrollbar-thumb {
-    background: rgba(139, 147, 179, 0.25);
-    border-radius: 999px;
-  }
-
+  .main-pane { overflow-y: auto; padding: 20px 24px 44px; }
   .pane-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap; margin-bottom: 18px;
   }
   .pane-header h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
   .pane-header p { margin: 3px 0 0; font-size: 13px; color: var(--text-muted); }
 
   .primary-pill-btn {
-    background: var(--accent);
-    color: #fff;
-    border: 0;
-    border-radius: 10px;
-    padding: 9px 15px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    background: var(--accent); color: #fff; border: 0; border-radius: 10px;
+    padding: 9px 15px; font-size: 13px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
   }
   .primary-pill-btn:hover { background: var(--accent-hover); }
-  .primary-pill-btn:disabled { opacity: 0.6; cursor: wait; }
 
   .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 16px; margin-bottom: 24px;
   }
-
   .tool-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: var(--shadow-card);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: border-color .15s;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 10px;
   }
-  .tool-card:hover { border-color: rgba(99, 102, 241, 0.4); }
   .tool-card.wide { grid-column: 1 / -1; }
 
-  .card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
   .card-head-left { display: flex; align-items: center; gap: 10px; }
   .icon-box {
-    width: 34px; height: 34px; border-radius: 10px;
-    display: grid; place-items: center; font-size: 16px;
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 16px;
     background: var(--accent-soft); border: 1px solid rgba(99, 102, 241, 0.25);
   }
   .icon-box.green { background: var(--green-soft); border-color: var(--green-border); }
@@ -396,30 +217,23 @@
     font-size: 12px; font-weight: 600; color: var(--text-muted); margin: 4px 0 2px;
   }
   .val {
-    color: var(--text); background: var(--bg-pill);
-    padding: 1px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700;
+    color: var(--text); background: var(--bg-pill); padding: 1px 8px;
+    border-radius: 6px; font-size: 11.5px; font-weight: 700;
   }
 
   textarea {
     width: 100%; min-height: 145px; height: 155px; resize: vertical;
     font-size: 13.5px; line-height: 1.5; padding: 10px 12px;
-    border: 1px solid var(--border); border-radius: 10px;
-    background: var(--bg-app); color: var(--text);
+    border: 1px solid var(--border); border-radius: 10px; background: var(--bg-app); color: var(--text);
   }
-  textarea:focus, select:focus, input[type=text]:focus { outline: none; border-color: var(--accent); }
-
   select, input[type=text] {
     width: 100%; padding: 8px 10px; font-size: 13px;
-    border: 1px solid var(--border); border-radius: 10px;
-    background: var(--bg-app); color: var(--text);
+    border: 1px solid var(--border); border-radius: 10px; background: var(--bg-app); color: var(--text);
   }
-
   input[type=color] {
-    width: 100%; height: 36px; padding: 2px;
-    border: 1px solid var(--border); border-radius: 10px;
-    background: var(--bg-app); cursor: pointer;
+    width: 100%; height: 36px; padding: 2px; border: 1px solid var(--border);
+    border-radius: 10px; background: var(--bg-app); cursor: pointer;
   }
-
   input[type=range] { width: 100%; accent-color: var(--accent); cursor: pointer; margin: 2px 0 4px; }
 
   .check-row { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
@@ -427,39 +241,31 @@
   .check-row label { font-size: 12.5px; color: var(--text); cursor: pointer; }
 
   .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-
-  button.s-btn, label.s-btn {
+  button.s-btn, label.s-btn, a.s-btn {
     background: var(--bg-pill); color: var(--text); border: 1px solid var(--border);
     border-radius: 9px; padding: 7px 12px; font-size: 12px; font-weight: 600;
     cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    transition: all .15s;
+    text-decoration: none;
   }
-  button.s-btn:hover, label.s-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); }
-  button.s-btn.accent, label.s-btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
-  button.s-btn.accent:hover, label.s-btn.accent:hover { background: var(--accent-hover); }
+  button.s-btn:hover, label.s-btn:hover, a.s-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); }
+  button.s-btn.accent, label.s-btn.accent, a.s-btn.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
   button.s-btn.green {
-    background: linear-gradient(135deg, #22c55e, #15803d);
-    color: #fff; border: 1px solid rgba(134, 239, 172, 0.55);
-    font-weight: 800; padding: 9px 16px; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+    background: linear-gradient(135deg, #22c55e, #15803d); color: #fff;
+    border: 1px solid rgba(134, 239, 172, 0.55); font-weight: 800; padding: 9px 16px;
   }
-  button.s-btn.green:hover { filter: brightness(1.08); }
-  button.s-btn.amber {
-    background: var(--amber); color: #0c0e1a; border-color: var(--amber); font-weight: 800;
-  }
+  button.s-btn.amber { background: var(--amber); color: #0c0e1a; border-color: var(--amber); font-weight: 800; }
   label.s-btn input { display: none; }
 
   .slot-title { font-size: 11.5px; font-weight: 700; color: var(--text-muted); margin: 6px 0 4px; }
   .photos { display: flex; flex-wrap: wrap; gap: 8px; }
   .thumb {
-    position: relative; width: 68px; height: 92px;
-    border: 2px solid var(--border); border-radius: 9px;
-    background: var(--bg-pill) center/cover no-repeat; cursor: pointer; overflow: hidden;
+    position: relative; width: 68px; height: 92px; border: 2px solid var(--border);
+    border-radius: 9px; background: var(--bg-pill) center/cover no-repeat; cursor: pointer; overflow: hidden;
   }
-  .thumb.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+  .thumb.active { border-color: var(--accent); }
   .thumb span {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: rgba(12, 14, 26, 0.78); color: #fff;
-    font-size: 10px; padding: 2px 4px; text-align: center;
+    position: absolute; bottom: 0; left: 0; right: 0; background: rgba(12, 14, 26, 0.78);
+    color: #fff; font-size: 10px; padding: 2px 4px; text-align: center;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .thumb b {
@@ -480,7 +286,6 @@
   .seg-group button.active.off-mode { background: var(--accent); color: #fff; }
 
   .pages-stream { display: flex; flex-direction: column; gap: 20px; }
-
   .page-card {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
     overflow: hidden; max-width: 780px; width: 100%; margin: 0 auto; box-shadow: var(--shadow-card);
@@ -515,7 +320,6 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.45); cursor: grab; pointer-events: auto; z-index: 3; touch-action: none;
   }
   .mesh-node.move-all { background: #6366f1; width: 18px; height: 18px; margin: -9px 0 0 -9px; cursor: move; }
-  .mesh-node:hover, .mesh-node:active { background: #22c55e; }
 
   .page-bar {
     display: flex; justify-content: space-between; align-items: center; gap: 10px;
@@ -524,81 +328,63 @@
   }
   .page-bar-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 
-  .section-banner {
-    max-width: 780px; width: 100%; margin: 4px auto 0;
-    font-size: 13.5px; font-weight: 700; color: var(--text-muted);
-  }
+  .section-banner { max-width: 780px; width: 100%; margin: 4px auto 0; font-size: 13.5px; font-weight: 700; color: var(--text-muted); }
 
   .bottom-save-box {
     max-width: 780px; width: 100%; margin: 12px auto 0; padding: 12px 16px;
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   }
-
   .hint-txt { font-size: 12px; color: var(--text-muted); }
 
   .changelog-box {
-    background: var(--bg-app);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: var(--text-muted);
+    background: var(--bg-app); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; font-size: 12.5px; line-height: 1.5; color: var(--text-muted);
   }
+
+  .update-modal-backdrop {
+    position: fixed; inset: 0; background: rgba(5, 8, 20, 0.72);
+    display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px;
+  }
+  .update-modal-backdrop.show { display: flex; }
+  .update-modal {
+    width: 100%; max-width: 440px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .update-modal h3 { margin: 0; font-size: 18px; }
+  .update-modal p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.5; }
 
   #toast {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    max-width: 390px;
-    background: linear-gradient(135deg, #16a34a, #15803d);
-    color: #ffffff;
-    border: 1px solid rgba(187, 247, 208, 0.55);
-    padding: 11px 16px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.35;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .22s ease, transform .22s ease;
-    pointer-events: none;
-    z-index: 999;
-    box-shadow: 0 10px 26px rgba(21, 128, 61, 0.45);
+    position: fixed; right: 18px; bottom: 18px; max-width: 390px;
+    background: linear-gradient(135deg, #16a34a, #15803d); color: #ffffff;
+    border: 1px solid rgba(187, 247, 208, 0.55); padding: 11px 16px;
+    border-radius: 12px; font-size: 13px; font-weight: 600; line-height: 1.35;
+    opacity: 0; transform: translateY(8px); transition: opacity .22s ease, transform .22s ease;
+    pointer-events: none; z-index: 999; box-shadow: 0 10px 26px rgba(21, 128, 61, 0.45);
   }
   #toast.show { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 900px) {
-    body { overflow: auto; }
-    .shell { height: auto; }
-    .workspace { grid-template-columns: 1fr; }
-    .sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
-  }
 </style>
 </head>
 <body>
 <div class="shell">
-
-  <!-- БАННЕР АВТООБНОВЛЕНИЯ ПРИ ИЗМЕНЕНИИ КОДА -->
   <div class="update-banner" id="updateBanner">
-    <span id="updateBannerText">🔄 Обнаружен новый код приложения! Нажмите «Обновить», чтобы применить изменения.</span>
+    <span id="updateBannerText">Доступно обновление на GitHub.</span>
     <div style="display:flex;gap:8px;align-items:center">
-      <button type="button" class="s-btn amber" id="applyUpdateBannerBtn">⚡ Обновить сейчас</button>
-      <button type="button" class="s-btn" id="openUpdateTabBtn">Вкладка обновлений</button>
+      <button type="button" class="s-btn amber" id="openUpdateModalFromBannerBtn">Открыть окно обновления</button>
     </div>
   </div>
 
   <header class="topbar">
     <div class="brand">
       <div class="brand-logo">✍️</div>
-      <span>NoteCraft Studio</span>
+      <span>АвтоРучка</span>
       <span class="ver-badge" id="appVersionBadge">v1.2.0</span>
     </div>
 
     <div class="top-tabs">
       <button type="button" class="top-tab active" id="tabPreview">📄 Превью листов</button>
-      <button type="button" class="top-tab" id="tabCalib">📐 Рамки и сетки</button>
+      <button type="button" class="top-tab" id="tabCalib">📐 Границы и сетка</button>
       <button type="button" class="top-tab" id="tabUpdates">
         <span>🔄 Обновления</span>
         <span class="tab-dot" id="updateTabDot"></span>
@@ -611,7 +397,6 @@
   </header>
 
   <div class="workspace">
-
     <aside class="sidebar">
       <div>
         <div class="sidebar-label">Разделы</div>
@@ -648,14 +433,13 @@
     <main class="main-pane" id="mainPane">
       <div class="pane-header">
         <div>
-          <h2 id="paneTitle">Рабочее пространство</h2>
-          <p id="paneSubtitle">Настраивайте текст, почерк и рамки листов — не забудьте нажать «Сохранить»</p>
+          <h2 id="paneTitle">Превью конспекта</h2>
+          <p id="paneSubtitle">Настраивайте параметры слева и скачивайте готовые листы в PDF или PNG</p>
         </div>
         <button type="button" class="primary-pill-btn" id="fixTextBtn">✨ Исправить ошибки и абзацы</button>
       </div>
 
       <div class="cards-grid" id="cardsGrid">
-
         <div class="tool-card wide" data-group="text">
           <div class="card-head">
             <div class="card-head-left">
@@ -674,8 +458,8 @@
             <div class="card-head-left">
               <div class="icon-box">🖋️</div>
               <div>
-                <div class="card-title-txt">Почерк и геометрия</div>
-                <div class="card-sub-txt">Шрифт, размер, интервалы и живое дрожание</div>
+                <div class="card-title-txt">Почерк и наклон</div>
+                <div class="card-sub-txt">Шрифт, размер, интервалы и неровность строк</div>
               </div>
             </div>
           </div>
@@ -687,11 +471,11 @@
             <option value="Bad Script">Bad Script</option>
             <option value="Neucha">Neucha</option>
             <option value="Kelly Slab">Kelly Slab</option>
-            <option value="Pacifico">Pacifico (живой слитный)</option>
-            <option value="Lobster">Lobster (живой связный)</option>
-            <option value="Comforter">Comforter (живой росчерк)</option>
-            <option value="Shantell Sans">Shantell Sans (живой рукописный)</option>
-            <option value="Amatic SC">Amatic SC (живой конспектный)</option>
+            <option value="Pacifico">Pacifico</option>
+            <option value="Lobster">Lobster</option>
+            <option value="Comforter">Comforter</option>
+            <option value="Shantell Sans">Shantell Sans</option>
+            <option value="Amatic SC">Amatic SC</option>
           </select>
 
           <div class="btn-row">
@@ -706,10 +490,10 @@
           <label class="lbl">Межбуквенный интервал <span class="val" id="v-spacing"></span></label>
           <input type="range" id="spacing" min="-2" max="8" step="0.1">
 
-          <label class="lbl">«Живое» искажение <span class="val" id="v-distortion"></span></label>
+          <label class="lbl">Неровность строк <span class="val" id="v-distortion"></span></label>
           <input type="range" id="distortion" min="0" max="10" step="0.1">
 
-          <label class="lbl">Красная строка <span class="val" id="v-indent"></span></label>
+          <label class="lbl">Отступ абзаца <span class="val" id="v-indent"></span></label>
           <input type="range" id="indent" min="0" max="150" step="1">
         </div>
 
@@ -718,7 +502,7 @@
             <div class="card-head-left">
               <div class="icon-box">💧</div>
               <div>
-                <div class="card-title-txt">Чернила и бумага</div>
+                <div class="card-title-txt">Цвет и прозрачность чернил</div>
                 <div class="card-sub-txt">Оттенок ручки, прозрачность и смешивание</div>
               </div>
             </div>
@@ -808,7 +592,7 @@
             <div class="card-head-left">
               <div class="icon-box green">📦</div>
               <div>
-                <div class="card-title-txt">Выгрузка готового конспекта</div>
+                <div class="card-title-txt">Сохранение файла</div>
                 <div class="card-sub-txt">Единый PDF-файл или отдельные PNG-изображения страниц</div>
               </div>
             </div>
@@ -818,7 +602,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="pages-stream" id="preview"></div>
@@ -826,96 +609,134 @@
   </div>
 </div>
 
-<div id="toast">Сохранено ✔</div>
+<div class="update-modal-backdrop" id="updateModal">
+  <div class="update-modal">
+    <h3 id="updateModalTitle">Обновление приложения</h3>
+    <p id="updateModalDesc">Найдена новая версия на GitHub. Перейдите в репозиторий, чтобы обновиться.</p>
+    <div id="updateModalVersionInfo" style="font-size:12.5px;font-weight:700;"></div>
+    <div class="btn-row" style="justify-content:flex-end;margin-top:8px">
+      <button type="button" class="s-btn" id="closeUpdateModalBtn">Закрыть</button>
+      <a class="s-btn accent" id="githubReleaseLink" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+        🌐 Перейти на GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="toast">Обновление актуально</div>
 
 <script>
-// ================= НАСТРОЙКИ ВЕРСИИ И АВТООБНОВЛЕНИЯ ПРИ ИЗМЕНЕНИИ КОДА =================
-// При изменении кода меняй APP_VERSION (или хэш сгенерируется автоматически из исходника скрипта)
-const APP_VERSION = 'v1.2.0';
-const REMOTE_MANIFEST_URL = ''; // Например: 'https://raw.githubusercontent.com/user/repo/main/version.json'
+const GITHUB_REPO_URL = 'https://github.com/androe123/AutoPen';
+const REMOTE_MANIFEST_URL = 'https://raw.githubusercontent.com/androe123/AutoPen/main/version.json';
+const AVAILABLE_VERSIONS = ['v1.2.0', 'v1.2.1', 'v1.3.0'];
 
-function computeCodeSignature() {
-  const src = document.documentElement.outerHTML;
-  let h = 2166136261 >>> 0;
-  for (let i = 0; i < src.length; i++) {
-    h ^= src.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return `${APP_VERSION}:${(h >>> 0).toString(16)}`;
-}
+let APP_VERSION = localStorage.getItem('hw_selected_version') || 'v1.2.2';
 
-const CURRENT_CODE_SIG = computeCodeSignature();
 let updateStatus = {
   hasUpdate: false,
-  reason: '',
-  latestSig: CURRENT_CODE_SIG,
   latestVersion: APP_VERSION,
-  notes: 'Текущий код синхронизирован. При изменении кода приложения система автоматически предложит обновиться.',
+  releaseUrl: `${GITHUB_REPO_URL}/releases`,
+  notes: 'Нажмите «Обновления», чтобы проверить наличие новой версии на GitHub.',
   checkedAt: new Date().toLocaleTimeString()
 };
+
+const $ = id => document.getElementById(id);
+
+function waitForPywebviewApi(timeoutMs = 3000) {
+  if (window.pywebview && window.pywebview.api) {
+    return Promise.resolve(window.pywebview.api);
+  }
+  return new Promise(resolve => {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      resolve(window.pywebview && window.pywebview.api ? window.pywebview.api : null);
+    };
+    window.addEventListener('pywebviewready', finish, { once: true });
+    const poll = setInterval(() => {
+      if (window.pywebview && window.pywebview.api) {
+        clearInterval(poll);
+        finish();
+      }
+    }, 50);
+    setTimeout(() => {
+      clearInterval(poll);
+      finish();
+    }, timeoutMs);
+  });
+}
+
+function openUpdateDialog({ found, version, notes, url }) {
+  const modal = $('updateModal');
+  $('githubReleaseLink').href = url || `${GITHUB_REPO_URL}/releases`;
+
+  if (found) {
+    $('updateModalTitle').textContent = `Доступно обновление (${version})`;
+    $('updateModalDesc').textContent = notes || 'На GitHub выложена новая версия. Перейдите в репозиторий и обновите приложение.';
+    $('updateModalVersionInfo').textContent = `Текущая версия: ${APP_VERSION} → Новая версия: ${version}`;
+    updateStatus.hasUpdate = true;
+    updateStatus.latestVersion = version;
+    updateStatus.releaseUrl = url || `${GITHUB_REPO_URL}/releases`;
+  } else {
+    $('updateModalTitle').textContent = 'Обновление актуально';
+    $('updateModalDesc').textContent = `Установлена актуальная версия ${APP_VERSION}. Вы можете открыть GitHub, чтобы посмотреть релизы.`;
+    $('updateModalVersionInfo').textContent = `Текущая версия: ${APP_VERSION}`;
+    updateStatus.hasUpdate = false;
+    updateStatus.latestVersion = APP_VERSION;
+  }
+
+  syncUpdateUI();
+  modal.classList.add('show');
+}
 
 function syncUpdateUI() {
   $('appVersionBadge').textContent = APP_VERSION;
   $('updateTabDot').classList.toggle('show', !!updateStatus.hasUpdate);
   $('updateBanner').classList.toggle('show', !!updateStatus.hasUpdate);
   if (updateStatus.hasUpdate) {
-    $('updateBannerText').textContent =
-      `🔄 Обнаружено изменение кода (${updateStatus.latestVersion || CURRENT_CODE_SIG}). Нажмите «Обновить», чтобы применить новую версию.`;
+    $('updateBannerText').textContent = `Доступно обновление ${updateStatus.latestVersion} на GitHub.`;
   }
 }
 
-async function applyAppUpdate() {
-  try {
-    localStorage.setItem('hw_last_seen_code_sig', CURRENT_CODE_SIG);
-    if ('caches' in window) {
-      const keys = await caches.keys();
-      await Promise.all(keys.map(k => caches.delete(k)));
-    }
-    if (navigator.serviceWorker) {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(regs.map(r => r.update()));
-    }
-  } catch (e) {}
-  window.location.reload(true);
-}
-
-async function checkForCodeUpdates() {
+async function checkForCodeUpdates(showDialogIfFound = true) {
   updateStatus.checkedAt = new Date().toLocaleTimeString();
-  const prevAppliedSig = localStorage.getItem('hw_applied_code_sig');
+  let found = false;
+  let remoteVer = APP_VERSION;
+  let remoteUrl = `${GITHUB_REPO_URL}/releases`;
+  let remoteNotes = 'Установлена актуальная версия приложения.';
 
-  if (prevAppliedSig && prevAppliedSig !== CURRENT_CODE_SIG) {
-    updateStatus.hasUpdate = true;
-    updateStatus.latestSig = CURRENT_CODE_SIG;
-    updateStatus.latestVersion = APP_VERSION;
-    updateStatus.reason = 'Код страницы/сборки изменился с момента последнего применения';
-    updateStatus.notes = `Обнаружен новый код сборки (${CURRENT_CODE_SIG}). Нажмите «Обновить приложение», чтобы перезагрузить с очисткой кэша и применить изменения.`;
-    syncUpdateUI();
-    if (state.viewMode === 'updates') renderView();
-    return;
-  }
-
-  if (REMOTE_MANIFEST_URL) {
+  if (REMOTE_MANIFEST_URL && !REMOTE_MANIFEST_URL.includes('ВАШ_НИК')) {
     try {
       const res = await fetch(`${REMOTE_MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
-        const manifest = await res.json();
-        const remoteSig = manifest.signature || manifest.version || '';
-        if (remoteSig && remoteSig !== CURRENT_CODE_SIG && remoteSig !== APP_VERSION) {
-          updateStatus.hasUpdate = true;
-          updateStatus.latestSig = remoteSig;
-          updateStatus.latestVersion = manifest.version || remoteSig;
-          updateStatus.reason = 'Найдена новая версия на сервере обновлений';
-          updateStatus.notes = manifest.notes || 'Доступно обновление кода приложения.';
+        const data = await res.json();
+        if (data && data.version && data.version !== APP_VERSION) {
+          found = true;
+          remoteVer = data.version;
+          remoteUrl = data.url || `${GITHUB_REPO_URL}/releases`;
+          remoteNotes = data.notes || 'Доступна новая версия на GitHub.';
         }
       }
     } catch (e) {}
   }
 
+  updateStatus.hasUpdate = found;
+  updateStatus.latestVersion = remoteVer;
+  updateStatus.releaseUrl = remoteUrl;
+  updateStatus.notes = remoteNotes;
   syncUpdateUI();
+
+  if (found && showDialogIfFound) {
+    openUpdateDialog({ found: true, version: remoteVer, notes: remoteNotes, url: remoteUrl });
+  } else {
+    showCornerNotice('Обновление актуально', false);
+  }
+
   if (state.viewMode === 'updates') renderView();
 }
 
-// ================= ОСНОВНОЕ СОСТОЯНИЕ И ЗАЩИТА НАСТРОЕК ОТ СЛЕТАНИЯ =================
+const DEFAULT_TEXT = '';
 const DEFAULT_BASE = { left: 10, top: 16, right: 10, bottom: 10, line: 32 };
 const STORAGE_KEY = 'hw_perpage_mesh_v7';
 const BACKUP_KEY = 'hw_perpage_mesh_backup';
@@ -990,17 +811,10 @@ function normalizePhotoConfig(cfg) {
 function hydrateState(raw) {
   const base = JSON.parse(JSON.stringify(DEFAULT_STATE));
   if (!raw || typeof raw !== 'object') return base;
-
   const merged = Object.assign(base, raw);
   merged.schemaVersion = 2;
   if (typeof merged.text !== 'string') merged.text = DEFAULT_TEXT;
-  if (typeof merged.fontSize !== 'number' || Number.isNaN(merged.fontSize)) merged.fontSize = 30;
-  if (typeof merged.spacing !== 'number' || Number.isNaN(merged.spacing)) merged.spacing = 0.5;
-  if (typeof merged.distortion !== 'number' || Number.isNaN(merged.distortion)) merged.distortion = 3;
-  if (typeof merged.indent !== 'number' || Number.isNaN(merged.indent)) merged.indent = 24;
-  if (typeof merged.opacity !== 'number' || Number.isNaN(merged.opacity)) merged.opacity = 0.9;
   if (!['preview', 'calib', 'updates'].includes(merged.viewMode)) merged.viewMode = 'preview';
-
   const cleanConfigs = {};
   if (merged.photoConfigs && typeof merged.photoConfigs === 'object') {
     Object.keys(merged.photoConfigs).forEach(k => {
@@ -1058,7 +872,7 @@ function idbDelete(store, key) {
 
 let toastTimer;
 function showCornerNotice(msg, sticky = false) {
-  const t = document.getElementById('toast');
+  const t = $('toast');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
@@ -1076,7 +890,7 @@ function showCornerNotice(msg, sticky = false) {
 
 function markDirty() {
   hasUnsavedChanges = true;
-  const btn = document.getElementById('btnSave');
+  const btn = $('btnSave');
   if (btn) btn.classList.add('dirty-pulse');
   showCornerNotice('⚠ Изменения могут быть не применены, если не нажать «Сохранить»', true);
 }
@@ -1084,6 +898,7 @@ function markDirty() {
 async function saveNow() {
   const payload = hydrateState(state);
   const serialized = JSON.stringify(payload);
+  const parsed = JSON.parse(serialized);
 
   try {
     localStorage.setItem(STORAGE_KEY, serialized);
@@ -1092,37 +907,66 @@ async function saveNow() {
 
   if (db) {
     try {
-      await idbPut('meta', { key: 'perpage_mesh_v7', value: JSON.parse(serialized) });
-      await idbPut('meta', { key: 'perpage_mesh_backup', value: JSON.parse(serialized) });
+      await idbPut('meta', { key: 'perpage_mesh_v7', value: parsed });
+      await idbPut('meta', { key: 'perpage_mesh_backup', value: parsed });
     } catch (e) {}
   }
-if (window.pywebview && window.pywebview.api && typeof window.pywebview.api.save_settings === 'function') {
+
+  let savedToDisk = false;
+  const api = await waitForPywebviewApi(2500);
+  if (api && typeof api.save_settings === 'function') {
     try {
-      await window.pywebview.api.save_settings(JSON.parse(serialized));
+      savedToDisk = !!(await api.save_settings(parsed));
     } catch (e) {}
   }
+
+  if (api && typeof api.save_photos === 'function') {
+    try {
+      const toDataUrl = blob => new Promise(res => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.readAsDataURL(blob);
+      });
+      const serializedPhotos = [];
+      for (const p of [...photosLeft, ...photosRight]) {
+        serializedPhotos.push({
+          id: p.id,
+          side: p.side,
+          name: p.name,
+          dataUrl: await toDataUrl(p.blob)
+        });
+      }
+      await api.save_photos(serializedPhotos);
+    } catch (e) {}
+  }
+
   hasUnsavedChanges = false;
-  const btn = document.getElementById('btnSave');
+  const btn = $('btnSave');
   if (btn) btn.classList.remove('dirty-pulse');
-  showCornerNotice('Сохранено ✔', false);
+  showCornerNotice(savedToDisk ? 'Сохранено на диск ✔' : 'Сохранено ✔', false);
 }
 
 async function loadSettings() {
   let saved = null;
-  if (!saved && window.pywebview && window.pywebview.api && typeof window.pywebview.api.load_settings === 'function') {
+
+  const api = await waitForPywebviewApi(3000);
+  if (api && typeof api.load_settings === 'function') {
     try {
-      const desktopSaved = await window.pywebview.api.load_settings();
+      const desktopSaved = await api.load_settings();
       if (desktopSaved && typeof desktopSaved === 'object') {
         saved = desktopSaved;
       }
     } catch (e) {}
   }
+
   for (const key of [STORAGE_KEY, BACKUP_KEY]) {
+    if (saved) break;
     try {
       const raw = localStorage.getItem(key);
-      if (raw) { saved = JSON.parse(raw); break; }
+      if (raw) saved = JSON.parse(raw);
     } catch (e) {}
   }
+
   if (!saved && db) {
     for (const metaKey of ['perpage_mesh_v7', 'perpage_mesh_backup']) {
       try {
@@ -1131,10 +975,10 @@ async function loadSettings() {
       } catch (e) {}
     }
   }
+
   state = hydrateState(saved);
 }
 
-const $ = id => document.getElementById(id);
 const simpleControls = ['fontSize', 'spacing', 'distortion', 'indent', 'opacity'];
 
 function applyTheme() {
@@ -1154,9 +998,7 @@ function applySectionFilter(sectionName) {
 }
 
 function getAllPhotos() { return [...photosLeft, ...photosRight]; }
-function findPhotoById(id) {
-  return photosLeft.find(p => p.id === id) || photosRight.find(p => p.id === id) || null;
-}
+function findPhotoById(id) { return photosLeft.find(p => p.id === id) || photosRight.find(p => p.id === id) || null; }
 function ensureActivePhotoId() {
   if (!findPhotoById(state.activeId)) {
     const first = getAllPhotos()[0];
@@ -1190,10 +1032,10 @@ function updateTabsUI() {
   $('fixTextBtn').style.display = isUpdates ? 'none' : '';
 
   if (mode === 'updates') {
-    $('paneTitle').textContent = 'Обновления приложения';
-    $('paneSubtitle').textContent = 'Автоматическое отслеживание изменений кода и установка обновлений';
+    $('paneTitle').textContent = 'Обновления';
+    $('paneSubtitle').textContent = 'Проверка версий на GitHub и выбор версии приложения';
   } else if (mode === 'calib') {
-    $('paneTitle').textContent = 'Рамки и сетки листов';
+    $('paneTitle').textContent = 'Границы и сетка листа';
     $('paneSubtitle').textContent = 'Перетаскивайте рамку или узлы сетки прямо на изображении страницы';
   } else {
     $('paneTitle').textContent = 'Превью конспекта';
@@ -1301,7 +1143,7 @@ async function deletePhoto(id) {
   removeFrom(photosLeft);
   removeFrom(photosRight);
   delete state.photoConfigs[id];
-  await idbDelete('photos', id);
+  if (db) await idbDelete('photos', id);
   ensureActivePhotoId();
   applyBaseToControls();
   renderPhotoLists();
@@ -1577,6 +1419,8 @@ function attachCalibOverlay(wrap, photoId, redrawCanvasOnly) {
       targetEl.setPointerCapture(pointerId);
       const rect = wrap.getBoundingClientRect(), startX = e.clientX, startY = e.clientY;
       const startLeft = cfg.base.left, startTop = cfg.base.top, startRight = cfg.base.right, startBottom = cfg.base.bottom;
+      let rafId = null;
+
       const onMove = ev => {
         if (ev.pointerId !== pointerId) return;
         const dxPct = ((ev.clientX - startX) / rect.width) * 100, dyPct = ((ev.clientY - startY) / rect.height) * 100;
@@ -1593,10 +1437,20 @@ function attachCalibOverlay(wrap, photoId, redrawCanvasOnly) {
         }
         cfg.mesh3 = syncMeshToBase(cfg.mesh3, 3, cfg.base);
         cfg.mesh4 = syncMeshToBase(cfg.mesh4, 4, cfg.base);
-        syncBoxCss(); redrawCanvasOnly(); markDirty();
+        syncBoxCss();
+        if (!rafId) {
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
+            redrawCanvasOnly();
+          });
+        }
+        markDirty();
       };
+
       const onUp = ev => {
         if (ev.pointerId !== pointerId) return;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        redrawCanvasOnly();
         targetEl.removeEventListener('pointermove', onMove);
         targetEl.removeEventListener('pointerup', onUp);
         targetEl.removeEventListener('pointercancel', onUp);
@@ -1641,7 +1495,6 @@ function attachCalibOverlay(wrap, photoId, redrawCanvasOnly) {
     const node = document.createElement('div');
     node.className = 'mesh-node' + (isCenter ? ' move-all' : '');
     node.style.left = pt.x + '%'; node.style.top = pt.y + '%';
-    node.title = isCenter ? 'Двигать всю сетку целиком' : 'Погнуть этот участок';
     wrap.appendChild(node); return { el: node, isCenter, idx };
   });
 
@@ -1663,6 +1516,7 @@ function attachCalibOverlay(wrap, photoId, redrawCanvasOnly) {
       const pointerId = e.pointerId; targetEl.setPointerCapture(pointerId);
       const rect = wrap.getBoundingClientRect(), startX = e.clientX, startY = e.clientY;
       const snapshot = mesh.map(p => ({ x: p.x, y: p.y }));
+      let rafId = null;
       const onMove = ev => {
         if (ev.pointerId !== pointerId) return;
         const dx = ((ev.clientX - startX) / rect.width) * 100, dy = ((ev.clientY - startY) / rect.height) * 100;
@@ -1678,10 +1532,16 @@ function attachCalibOverlay(wrap, photoId, redrawCanvasOnly) {
           mesh[nodeIdx].x = +Math.max(0, Math.min(100, snapshot[nodeIdx].x + dx)).toFixed(2);
           mesh[nodeIdx].y = +Math.max(0, Math.min(100, snapshot[nodeIdx].y + dy)).toFixed(2);
         }
-        syncOverlayPos(); redrawCanvasOnly(); markDirty();
+        syncOverlayPos();
+        if (!rafId) {
+          rafId = requestAnimationFrame(() => { rafId = null; redrawCanvasOnly(); });
+        }
+        markDirty();
       };
       const onUp = ev => {
         if (ev.pointerId !== pointerId) return;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        redrawCanvasOnly();
         targetEl.removeEventListener('pointermove', onMove);
         targetEl.removeEventListener('pointerup', onUp);
         targetEl.removeEventListener('pointercancel', onUp);
@@ -1719,40 +1579,39 @@ async function renderUpdatesMode(token) {
       <div class="card-head-left">
         <div class="icon-box amber">🔄</div>
         <div>
-          <div class="card-title-txt">Состояние сборки и автообновления</div>
-          <div class="card-sub-txt">Версия: <b>${APP_VERSION}</b> · Сигнатура кода: <code>${CURRENT_CODE_SIG}</code></div>
+          <div class="card-title-txt">Обновления</div>
+          <div class="card-sub-txt">Текущая версия: <b>${APP_VERSION}</b></div>
         </div>
       </div>
       <div class="btn-row" style="margin:0">
         <button type="button" class="s-btn" id="manualCheckUpdateBtn">🔄 Обновления</button>
-        <button type="button" class="s-btn ${updateStatus.hasUpdate ? 'amber' : 'green'}" id="installUpdateBtn">
-          ${updateStatus.hasUpdate ? '⚡ Обновить приложение' : '✔ Актуальный код'}
+        <button type="button" class="s-btn ${updateStatus.hasUpdate ? 'amber' : 'green'}" id="openUpdateModalBtn">
+          ${updateStatus.hasUpdate ? 'Открыть обновление' : 'Обновление актуально'}
         </button>
       </div>
     </div>
 
-    <div class="changelog-box" style="margin-bottom:12px">
-      <div><b>Статус:</b> ${updateStatus.hasUpdate ? 'Обнаружены изменения в коде — требуется обновление' : 'Код актуален, изменений не обнаружено'}</div>
+    <div class="changelog-box">
+      <div><b>Статус:</b> ${updateStatus.hasUpdate ? `Доступна версия ${updateStatus.latestVersion}` : 'Обновление актуально'}</div>
       <div><b>Последняя проверка:</b> ${updateStatus.checkedAt}</div>
-      <div style="margin-top:6px">${updateStatus.notes}</div>
-    </div>
-
-    <div class="hint-txt">
-      Как работает автопредложение: при каждом изменении кода приложения (или обновлении файла сборки) вычисляется новая сигнатура кода. При открытии/проверке система сравнивает её с сохранённой и автоматически предлагает обновить приложение без потери твоих настроек, рамок и фото.
     </div>
   `;
   box.appendChild(card);
 
   $('manualCheckUpdateBtn').onclick = () => {
-    checkForCodeUpdates();
-    showCornerNotice('Проверка кода выполнена ✔', false);
-  };
-  $('installUpdateBtn').onclick = () => {
-    localStorage.setItem('hw_applied_code_sig', CURRENT_CODE_SIG);
-    applyAppUpdate();
+    checkForCodeUpdates(true);
   };
 
-  box.appendChild(createBottomSaveBar('Настройки и рамки сохраняются отдельно в localStorage и IndexedDB'));
+  $('openUpdateModalBtn').onclick = () => {
+    openUpdateDialog({
+      found: updateStatus.hasUpdate,
+      version: updateStatus.latestVersion,
+      notes: updateStatus.notes,
+      url: updateStatus.releaseUrl
+    });
+  };
+
+  box.appendChild(createBottomSaveBar('Настройки сохраняются локально на ПК'));
 }
 
 async function renderPreviewMode(token) {
@@ -1802,7 +1661,7 @@ async function renderCalibMode(token) {
   const all = getAllPhotos();
   if (!all.length) {
     const empty = document.createElement('div'); empty.className = 'section-banner';
-    empty.textContent = 'Загрузите левые или правые фотографии страниц, чтобы настроить рамку и сетку для каждого листа.';
+    empty.textContent = 'Загрузите левые или правые фотографии страниц, чтобы настроить границы и сетку.';
     box.appendChild(empty);
     box.appendChild(createBottomSaveBar('Изменения могут быть не применены, если не нажать «Сохранить»'));
     return;
@@ -1833,7 +1692,7 @@ async function renderCalibMode(token) {
       const canvas = document.createElement('canvas'); canvasWrap.appendChild(canvas);
 
       const redrawCanvasOnly = () => {
-        const sampleText = state.text.trim() ? state.text : DEFAULT_TEXT;
+        const sampleText = state.text || '';
         const geom = buildPageGeom(tpl);
         const sampleLines = wrapTextForGeom(sampleText, geom, geom.linesPerPage);
         drawPage(canvas, { tpl, geom, lines: sampleLines }, seedIdx, true);
@@ -1932,13 +1791,14 @@ function bindEvents() {
   $('tabCalib').onclick   = () => { state.viewMode = 'calib';   updateTabsUI(); renderView(); };
   $('tabUpdates').onclick = () => { state.viewMode = 'updates'; updateTabsUI(); renderView(); };
 
-  $('applyUpdateBannerBtn').onclick = () => {
-    localStorage.setItem('hw_applied_code_sig', CURRENT_CODE_SIG);
-    applyAppUpdate();
-  };
-  $('openUpdateTabBtn').onclick = () => {
-    state.viewMode = 'updates'; updateTabsUI(); renderView();
-  };
+  $('closeUpdateModalBtn').onclick = () => $('updateModal').classList.remove('show');
+  $('updateModal').onclick = e => { if (e.target.id === 'updateModal') e.currentTarget.classList.remove('show'); };
+  $('openUpdateModalFromBannerBtn').onclick = () => openUpdateDialog({
+    found: updateStatus.hasUpdate,
+    version: updateStatus.latestVersion,
+    notes: updateStatus.notes,
+    url: updateStatus.releaseUrl
+  });
 
   document.querySelectorAll('#panelWarpSeg button').forEach(btn => {
     btn.addEventListener('click', () => setPhotoWarpMode(state.activeId, btn.dataset.mode));
@@ -1978,7 +1838,7 @@ function bindEvents() {
     try {
       const buffer = await file.arrayBuffer();
       await registerCustomFont(buffer.slice(0), file.name);
-      await idbPut('meta', { key: 'customFont', name: file.name, buffer });
+      if (db) await idbPut('meta', { key: 'customFont', name: file.name, buffer });
       state.customFontName = file.name; state.font = 'CustomHand'; $('font').value = 'CustomHand';
       renderView(); markDirty();
     } catch (err) { showCornerNotice('Не удалось загрузить шрифт .ttf / .otf', false); }
@@ -1988,7 +1848,7 @@ function bindEvents() {
   async function handlePhotoUpload(inputEl, side, targetArr) {
     for (const file of inputEl.files) {
       const rec = { id: side[0] + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7), side, name: file.name, blob: file };
-      await idbPut('photos', rec);
+      if (db) await idbPut('photos', rec);
       const item = await buildPhotoItem(rec);
       targetArr.push(item);
       state.photoConfigs[rec.id] = {
@@ -2009,10 +1869,24 @@ function bindEvents() {
   $('btnPdf').onclick = exportPdf;
 
   $('resetAll').onclick = async () => {
-    const preservedConfigs = JSON.parse(JSON.stringify(state.photoConfigs || {}));
-    const keepView = state.viewMode, keepTheme = state.theme, keepActiveId = state.activeId;
-    state = hydrateState({ photoConfigs: preservedConfigs, viewMode: keepView, theme: keepTheme, activeId: keepActiveId });
-    ensureActivePhotoId(); applyStateToControls(); renderPhotoLists(); await renderView(); markDirty();
+    const keptPhotoConfigs = JSON.parse(JSON.stringify(state.photoConfigs || {}));
+    const keptActiveId = state.activeId;
+    const keptTheme = state.theme;
+    const keptViewMode = state.viewMode;
+
+    state = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), {
+      text: '',
+      photoConfigs: keptPhotoConfigs,
+      activeId: keptActiveId,
+      theme: keptTheme,
+      viewMode: keptViewMode
+    });
+
+    ensureActivePhotoId();
+    applyStateToControls();
+    renderPhotoLists();
+    await renderView();
+    markDirty();
   };
 
   window.addEventListener('beforeunload', e => {
@@ -2024,32 +1898,33 @@ function bindEvents() {
 }
 
 (async function init() {
-  db = await openDB();
-  if (window.pywebview && !window.pywebview.api) {
-    await new Promise(resolve => {
-      window.addEventListener('pywebviewready', resolve, { once: true });
-      setTimeout(resolve, 1000);
-    });
-  }
-  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
-  const LAST_CHECK_KEY = 'hw_last_update_check_ts';
-
-  async function maybeCheckUpdatesDaily(force = false) {
-    const lastTs = parseInt(localStorage.getItem(LAST_CHECK_KEY) || '0', 10);
-    const now = Date.now();
-    if (!force && lastTs && (now - lastTs) < ONE_DAY_MS) {
-      syncUpdateUI();
-      return;
-    }
-    localStorage.setItem(LAST_CHECK_KEY, String(now));
-    await checkForCodeUpdates();
+  try {
+    db = await Promise.race([
+      openDB(),
+      new Promise(resolve => setTimeout(() => resolve(null), 800))
+    ]);
+  } catch (e) {
+    db = null;
   }
 
-  await maybeCheckUpdatesDaily(false);
-  setInterval(() => maybeCheckUpdatesDaily(false), ONE_DAY_MS);
   await loadSettings();
 
-  const recs = await idbGetAll('photos');
+  let recs = db ? await idbGetAll('photos') : [];
+  if (!recs.length) {
+    const api = await waitForPywebviewApi(2500);
+    if (api && typeof api.load_photos === 'function') {
+      try {
+        const diskPhotos = await api.load_photos();
+        for (const dp of (diskPhotos || [])) {
+          const blob = await (await fetch(dp.dataUrl)).blob();
+          const rec = { id: dp.id, side: dp.side, name: dp.name, blob };
+          if (db) await idbPut('photos', rec);
+          recs.push(rec);
+        }
+      } catch (e) {}
+    }
+  }
+
   for (const rec of recs) {
     try {
       const item = await buildPhotoItem(rec);
@@ -2060,7 +1935,7 @@ function bindEvents() {
 
   ensureActivePhotoId();
 
-  const cf = await idbGet('meta', 'customFont');
+  const cf = db ? await idbGet('meta', 'customFont') : null;
   if (cf) {
     try { await registerCustomFont(cf.buffer.slice(0), cf.name); } catch (e) {}
   }
@@ -2072,11 +1947,22 @@ function bindEvents() {
   await renderView();
   document.fonts.ready.then(renderView);
 
-  if (!localStorage.getItem('hw_applied_code_sig')) {
-    localStorage.setItem('hw_applied_code_sig', CURRENT_CODE_SIG);
+  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+  const LAST_CHECK_KEY = 'hw_last_update_check_ts';
+
+  async function maybeCheckUpdatesDaily(force = false) {
+    const lastTs = parseInt(localStorage.getItem(LAST_CHECK_KEY) || '0', 10);
+    const now = Date.now();
+    if (!force && lastTs && (now - lastTs) < ONE_DAY_MS) {
+      syncUpdateUI();
+      return;
+    }
+    localStorage.setItem(LAST_CHECK_KEY, String(now));
+    await checkForCodeUpdates(true);
   }
-  await checkForCodeUpdates();
-  setInterval(checkForCodeUpdates, 15000);
+
+  await maybeCheckUpdatesDaily(false);
+  setInterval(() => maybeCheckUpdatesDaily(false), ONE_DAY_MS);
 })();
 </script>
 
