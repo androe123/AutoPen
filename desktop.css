@@ -1,0 +1,151 @@
+/* АвтоРучка — оформление и плотность для десктоп-версии */
+
+html, body {
+  user-select: none;
+}
+
+textarea, input[type="text"], .changelog-box {
+  user-select: text;
+}
+
+.shell {
+  height: 100vh;
+}
+
+.topbar {
+  height: 56px;
+  padding: 0 22px;
+  gap: 16px;
+}
+
+.top-tabs {
+  gap: 8px;
+}
+
+.top-tab {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.workspace {
+  grid-template-columns: 248px minmax(0, 1fr);
+}
+
+.sidebar {
+  padding: 16px 12px;
+  gap: 14px;
+}
+
+.nav-item {
+  padding: 9px 12px;
+}
+
+.main-pane {
+  padding: 22px 28px 56px;
+  scrollbar-gutter: stable;
+}
+
+.pane-header {
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pane-header h2 {
+  font-size: 22px;
+}
+
+.cards-grid {
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 26px;
+  max-width: 1240px;
+}
+
+.tool-card {
+  padding: 16px 18px;
+  border-radius: 12px;
+  transition: border-color .16s ease;
+}
+
+.tool-card:hover {
+  border-color: var(--border-strong);
+}
+
+.tool-card textarea {
+  min-height: 165px;
+  height: 175px;
+}
+
+.pages-stream {
+  gap: 22px;
+}
+
+.page-card,
+.bottom-save-box,
+.section-banner {
+  max-width: 840px;
+}
+
+@media (min-width: 1440px) {
+  .workspace {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+
+  .main-pane {
+    padding: 24px 36px 64px;
+  }
+
+  .page-card,
+  .bottom-save-box,
+  .section-banner {
+    max-width: 920px;
+  }
+}
+
+/* Клавиатурный фокус */
+button:focus-visible,
+label.s-btn:focus-visible,
+a.s-btn:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Физический отклик клавиш при наведении и клике мышью */
+button.s-btn:hover,
+label.s-btn:hover,
+a.s-btn:hover,
+.icon-btn:hover,
+.primary-pill-btn:hover {
+  transform: translateY(-1px);
+}
+
+button.s-btn:active,
+label.s-btn:active,
+a.s-btn:active,
+.icon-btn:active,
+.primary-pill-btn:active {
+  transform: translateY(1px);
+}
+
+/* Аккуратные скроллбары для десктопа */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
