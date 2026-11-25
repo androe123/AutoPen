@@ -86,4 +86,4 @@ if __name__ == "__main__":
     )
     t = threading.Thread(target=watch_updates, args=(window,), daemon=True)
     t.start()
-    webview.start(debug=False)
+    webview.start(debug=False, private_mode=False)

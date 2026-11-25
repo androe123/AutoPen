@@ -923,7 +923,7 @@
 const GITHUB_REPO_URL = 'https://github.com/androe123/AutoPen-Android';
 const REMOTE_MANIFEST_URL = 'https://raw.githubusercontent.com/androe123/AutoPen-Android/main/version.json';
 
-const APP_VERSION = 'v1.2.3';
+const APP_VERSION = 'v1.2.4';
 
 let updateStatus = {
   hasUpdate: false,
@@ -991,7 +991,26 @@ function syncUpdateUI() {
     $('updateBannerText').textContent = `Доступно обновление ${updateStatus.latestVersion} на GitHub.`;
   }
 }
+function isNewerVersion(latest, current) {
+  const clean = (v) =>
+    String(v || '')
+      .trim()
+      .replace(/^v/i, '')
+      .split('.')
+      .map((n) => parseInt(n, 10) || 0);
 
+  const a = clean(latest);
+  const b = clean(current);
+  const len = Math.max(a.length, b.length);
+
+  for (let i = 0; i < len; i++) {
+    const numA = a[i] ?? 0;
+    const numB = b[i] ?? 0;
+    if (numA > numB) return true;
+    if (numA < numB) return false;
+  }
+  return false;
+}
 async function checkForCodeUpdates(showDialogIfFound = true) {
   updateStatus.checkedAt = new Date().toLocaleTimeString();
   let found = false;
@@ -1004,7 +1023,7 @@ async function checkForCodeUpdates(showDialogIfFound = true) {
       const res = await fetch(`${REMOTE_MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
-        if (data && data.version && data.version !== APP_VERSION) {
+        if (data && data.version && isNewerVersion(data.version, APP_VERSION)) {
           found = true;
           remoteVer = data.version;
           remoteUrl = data.url || `${GITHUB_REPO_URL}/releases`;
