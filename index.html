@@ -956,7 +956,7 @@
 <div class="ai-modal-backdrop" id="aiSettingsModal">
   <div class="ai-modal">
     <h3>🤖 Настройка нейросети для проверки текста</h3>
-    <p>Укажите API-ключ. Если ключ пустой, кнопка «Исправить текст» использует встроенный офлайн-корректор. Ключ хранится локально только на вашем устройстве.</p>
+    <p>Укажите API-ключ для нейросети. Если ключ не задан, кнопка «Исправить текст» бесплатно проверяет текст через Яндекс Спеллер (без ключа) или встроенным офлайн-корректором.</p>
 
     <div class="ai-field">
       <label for="aiProviderPreset">Провайдер (быстрый выбор)</label>
@@ -998,7 +998,7 @@
 
 <script>
 const GITHUB_REPO_URL = 'https://github.com/androe123/AutoPen';
-const REMOTE_MANIFEST_URL = '';
+const REMOTE_MANIFEST_URL = 'https://raw.githubusercontent.com/androe123/AutoPen/main/version.json';
 
 const APP_VERSION = 'v1.2.5';
 
@@ -2612,12 +2612,78 @@ function bindEvents() {
 
     lastTextBeforeFix = raw;
 
+    async function fixTextWithYandexSpeller(text) {
+      const MAX_CHUNK = 9000;
+      const chunks = [];
+      let cursor = 0;
+
+      while (cursor < text.length) {
+        let end = Math.min(cursor + MAX_CHUNK, text.length);
+        if (end < text.length) {
+          const lastBreak = Math.max(
+            text.lastIndexOf('\n', end),
+            text.lastIndexOf(' ', end)
+          );
+          if (lastBreak > cursor) end = lastBreak + 1;
+        }
+        chunks.push(text.slice(cursor, end));
+        cursor = end;
+      }
+
+      const fixedChunks = [];
+      for (const chunk of chunks) {
+        const params = new URLSearchParams();
+        params.append('text', chunk);
+        params.append('lang', 'ru');
+        params.append('options', '4');
+
+        const res = await fetch('https://speller.yandex.net/services/spellservice.json/checkText', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: params.toString()
+        });
+        if (!res.ok) throw new Error('Yandex Speller HTTP ' + res.status);
+        const errors = await res.json();
+        if (!Array.isArray(errors) || !errors.length) {
+          fixedChunks.push(chunk);
+          continue;
+        }
+
+        let part = chunk;
+        const sorted = [...errors].sort((a, b) => b.pos - a.pos);
+        for (const err of sorted) {
+          if (err.s && err.s.length > 0) {
+            part = part.slice(0, err.pos) + err.s[0] + part.slice(err.pos + err.len);
+          }
+        }
+        fixedChunks.push(part);
+      }
+
+      return fixedChunks.join('');
+    }
+
     if (!apiKey) {
-      textarea.value = applyLocalGrammarAndOrthography(raw);
-      textarea.dispatchEvent(new Event('input', { bubbles: true }));
-      if (undoBtn) undoBtn.style.display = 'inline-flex';
-      markDirty();
-      showCornerNotice('Исправлено офлайн-корректором (ключ ИИ не указан)', false);
+      const origLabel = fixBtn.textContent;
+      fixBtn.disabled = true;
+      fixBtn.textContent = '⏳ Проверяем текст...';
+      showCornerNotice('Проверяю орфографию и пунктуацию...', true);
+      try {
+        const spellerFixed = await fixTextWithYandexSpeller(raw);
+        textarea.value = applyLocalGrammarAndOrthography(spellerFixed);
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
+        if (undoBtn) undoBtn.style.display = 'inline-flex';
+        markDirty();
+        showCornerNotice('Текст исправлен (Яндекс Спеллер + автоформат) ✨', false);
+      } catch (e) {
+        textarea.value = applyLocalGrammarAndOrthography(raw);
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
+        if (undoBtn) undoBtn.style.display = 'inline-flex';
+        markDirty();
+        showCornerNotice('Исправлено встроенным офлайн-корректором ✔', false);
+      } finally {
+        fixBtn.disabled = false;
+        fixBtn.textContent = origLabel;
+      }
       return;
     }
 
